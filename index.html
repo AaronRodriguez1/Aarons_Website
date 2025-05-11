@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aaron Rodriguez | Portfolio</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto px-6 lg:px-20 flex justify-between items-center py-4">
+      <a href="#" class="text-2xl font-bold text-black-600">Aaron Rodriguez</a>
+      <ul class="hidden md:flex space-x-8">
+        <li><a href="#about" class="hover:text-indigo-500 transition">About</a></li>
+        <li><a href="#resume" class="hover:text-indigo-500 transition">Resume</a></li>
+        <li><a href="#github" class="hover:text-indigo-500 transition">GitHub</a></li>
+        <li><a href="#papers" class="hover:text-indigo-500 transition">Papers</a></li>
+        <li><a href="#projects" class="hover:text-indigo-500 transition">Projects</a></li>
+        <li><a href="#contact" class="hover:text-indigo-500 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero / About -->
+  <header id="about" class="bg-gradient-to-r from-red-600 to-blue-500 text-white">
+    <div class="container mx-auto px-6 lg:px-20 py-12 text-center">
+      <img src="images/aaron.jpg" alt="Aaron Rodriguez" class="mx-auto rounded-full w-48 h-48 border-4 border-white shadow-lg mb-6 object-cover">
+      <h1 class="text-4xl lg:text-5xl font-extrabold mb-4">About Me</h1>
+      <p class="max-w-2xl mx-auto text-lg leading-relaxed">Hello there! I am Aaron Rodriguez, a Software Engineer from San Antonio, Texas, currently pursuing a Master’s in Artificial Intelligence at UT Austin. I approach tasks with positivity, organization, and a focus on timeliness. Whether working independently or leading a team, I’m committed to delivering efficient and precise results. I value diverse perspectives and embrace feedback as a tool for growth.</p>
+      <p class="mt-6 italic mb-4">When not working on my tech skills, I enjoy working out, running, cycling, and hiking, as well as giving back to the community.</p>
+      <h1 class="text-4xl lg:text-3xl font-extrabold mb-4">Fun Fact</h1>
+      <span class="bg-white text-indigo-600 px-4 py-2 rounded-full font-medium">I can juggle</span>
+      <span class="bg-white text-indigo-600 px-4 py-2 rounded-full font-medium">Rubik's cube in &lt;1min</span>
+      <div class="mt-6 flex justify-center space-x-4">
+      </div>
+    </div>
+  </header>
+
+<section id="resume" class="container mx-auto px-6 lg:px-20 py-12 text-center">
+  <h2 class="text-3xl font-bold text-center text-indigo-600 mb-8">Resume</h2>
+  <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6">
+    <div class="text-gray-700">
+      <a href="https://drive.google.com/file/d/1JLFHiNQXZ7uTtECJ7bQvULt7z8Xq0xGt/view?usp=sharing" 
+         class="text-indigo-600 underline hover:text-indigo-500 text-lg font-medium">
+        View My Resume
+      </a>
+    </div>
+  </div>
+</section>
+<section id="github" class="container mx-auto px-6 lg:px-20 py-12 text-center">
+  <h2 class="text-3xl font-bold text-center text-indigo-600 mb-8">GitHub</h2>
+  <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6">
+    <div class="text-gray-700">
+      <a href="https://github.com/AaronRodriguez1" 
+         class="text-indigo-600 underline hover:text-indigo-500 text-lg font-medium" target="_blank">
+        Visit My GitHub Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+  <!-- Published Papers -->
+  <section id="papers" class="container mx-auto px-6 lg:px-20 py-12">
+    <h2 class="text-3xl font-bold text-center text-indigo-600 mb-8">Published Papers</h2>
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6">
+      <ol class="list-decimal space-y-4 text-gray-700">
+        <li>
+          <p class="font-semibold">R. Jambunathan, Z. Yao, R. Lombardini, A. Rodriguez, A. Nonaka, <span class="italic">Two-Fluid Physical Modeling of Superconducting Resonators in the ARTEMIS Framework</span>, <strong>Computer Physics Communications</strong>, Volume 291, 2023, 108836, ISSN 0010-4655. <a href="https://doi.org/10.1016/j.cpc.2023.108836" class="text-indigo-600 underline hover:text-indigo-500">View DOI</a></p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="bg-gray-100 py-12">
+    <div class="container mx-auto px-6 lg:px-20">
+      <h2 class="text-3xl font-bold text-center text-indigo-600 mb-10">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Card Template -->
+        <!-- Digital Twin AI Assistant -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+          <img src="images/digital_twin.jpg" alt="Digital Twin AI Assistant" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-indigo-600">Digital Twin AI Assistant</h3>
+            <p class="italic text-sm text-gray-600 mb-4">@ Personal Project</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+              <li>Designed a custom digital twin agent with PyTorch and transformer architectures.</li>
+              <li>Deployed on Pi Zero with TensorFlow Lite for predictive maintenance & real-time interactions.</li>
+              <li>Built batch-tokenization pipelines and optimized loss functions.</li>
+              <li>Integrated AWS SageMaker & CloudWatch for CI/CD and edge syncing.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ARTEMIS Framework -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+          <img src="images/artemis.jpg" alt="ARTEMIS Framework" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-indigo-600">ARTEMIS Framework</h3>
+            <p class="italic text-sm text-gray-600 mb-4">@ Lawrence Berkeley National Laboratory</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+              <li>Expanded ARTEMIS for electrodynamic modeling in quantum computing.</li>
+              <li>Containerized workflows with Docker for reproducible simulations.</li>
+              <li>Automated CI/CD on Azure for large-scale compute jobs.</li>
+              <li>Validated London penetration depth via full-wave methods.</li>
+            </ul>
+            <a href="https://drive.google.com/drive/u/0/folders/1qjkYaE_pZ9kz88GmCzTYy1PDB3riOZru" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Poster</a>
+          </div>
+        </div>
+
+        <!-- Agent Librarian Chat Bot -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+          <img src="images/agent_librarian.jpg" alt="Agent Librarian Chat Bot" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-indigo-600">Agent Librarian Chat Bot</h3>
+            <p class="italic text-sm text-gray-600 mb-4">@ Personal Project</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+              <li>Built a RAG chatbot with LangChain, FAISS, and OpenAI.</li>
+              <li>Structured JSON knowledge base for accurate retrieval.</li>
+              <li>Implemented evaluation metrics to fine-tune embeddings.</li>
+            </ul>
+          </div>
+        </div>
+
+    <!-- Helmholtz Coil Redesign -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/helmholtz.jpg" alt="Helmholtz Coil Redesign" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Helmholtz Coil Redesign</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ SLAC National Accelerator Laboratory</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Rebuilt and designed a Helmholtz coil rotating table system to precisely measure magnetic moments.</li>
+      <li>Developed Python scripts for real‑time data processing, reducing turnaround by 25%.</li>
+      <li>Used SolidWorks for assemblies, drawings, simulations and 3D prints prior to fabrication.</li>
+      <li>Conducted materials research to source optimal components.</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1QgDr9hSOS6OWZN6ofkFEVdZrwOWM0PNS/view?usp=sharing" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Presentation</a>
+  </div>
+</div>
+
+<!-- Microcontroller - Adafruit -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/microcontroller.jpg" alt="Microcontroller - Adafruit" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Microcontroller ‑ Adafruit</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ Brookhaven National Laboratory</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Programmed microcontrollers to automate analog & semiconductor circuit data acquisition.</li>
+      <li>Wrote Python code to control high‑precision sensors and plot transient responses.</li>
+      <li>Engineered a software oscilloscope & spectrum analyzer for signal generator testing.</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1lGjJY4ZmLspQPsHW_qyV8XOkIp9ZakMq/view?usp=sharing" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Presentation</a>
+  </div>
+</div>
+
+<!-- Conveyor Belt Control System -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/conveyor.jpg" alt="Conveyor Belt Control System" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Conveyor Belt Control System</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ St. Mary’s University - Industrial Automation & Controls</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Implemented PLC logic to auto‑detect and sort boxes on an assembly line.</li>
+      <li>Used optical sensors and counters to stop after three scans.</li>
+      <li>Built SCADA simulations in Siemens TIA Portal and retrieved sensor data via OPC.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Simulation for Spacecraft Reentry -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/reentry.jpg" alt="Simulation for Spacecraft Reentry" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Simulation for Spacecraft Reentry</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ St. Mary’s University - Heat Transfer</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Built an explicit Euler Python model for spacecraft thermal profiles.</li>
+      <li>Visualized temperature vs. time with Matplotlib, optimizing grid resolution.</li>
+      <li>Included temperature‑dependent conductivity and radiation boundary effects.</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1sVsSRON682CwLFZJZsSJ5sNKxvyaOq-x/view?usp=sharing" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Presentation</a>
+  </div>
+</div>
+
+<!-- Summer Undergraduate Research Fellowship -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/surf.jpg" alt="Summer Undergraduate Research Fellowship" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Summer Undergraduate Research Fellowship</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ St. Mary’s University</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Built a science‑demo app in Python & Glide for community outreach.</li>
+      <li>Enabled students to explore 17 interactive video demos.</li>
+      <li>App live at <a href="https://glideapp.io" class="text-indigo-600 underline hover:text-indigo-500">Fiesta of Physics</a>.</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1crPgY2u0qgCBQIpXLqSnqvTybCT-aQMy/view?usp=sharing" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Poster</a>
+  </div>
+</div>
+
+<!-- Spring Research Fellowship -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/spring_research.jpg" alt="Spring Research Fellowship" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Spring Research Fellowship</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ St. Mary’s University</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Studied contaminant transport in HVAC using pressure transducers.</li>
+      <li>Designed a scale‑model HVAC unit in SolidWorks.</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1w3UVfO_1EDTZAkR72K0rlBgeT_bQ0z2f/view?usp=sharing" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Poster</a>
+  </div>
+</div>
+
+<!-- Trash Collection Device -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/trash.jpg" alt="Trash Collection Device" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Trash Collection Device</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ St. Mary’s University - Senior Design</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Led design & prototyping of an automated river trash collector.</li>
+      <li>Integrated data‑logging to optimize water sample performance.</li>
+      <li>Programmed PLCs to automate trash & sample collection cycles.</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1MJ7_lzSh6CtxqITUzT3lU9trQge1i0Hb/view?usp=sharing" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Report</a>
+  </div>
+</div>
+
+<!-- Drone Leg Connection -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-2xl transition-shadow">
+  <img src="images/drone.jpg" alt="Drone Leg Connection" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-2 text-indigo-600">Drone Leg Connection</h3>
+    <p class="italic text-sm text-gray-600 mb-4">@ St. Mary’s University - Aerospace & Wind Structures</p>
+    <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+      <li>Designed leg connection using strength, fatigue, and crack‑growth analyses.</li>
+      <li>Ran FEA in SolidWorks for Von Mises stress & strain plots.</li>
+      <li>Built 3D‑printed models to validate deflection & fatigue behavior.</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1vAAb5tcuS1KjMux3Up093MAa053dNZYW/view?usp=sharing" class="inline-block mt-4 text-indigo-600 underline hover:text-indigo-500">View Report</a>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="bg-indigo-600 text-white py-8">
+    <div class="container mx-auto px-6 lg:px-20 text-center">
+      <h4 class="text-xl font-semibold mb-2">Let's Connect</h4>
+      <p class="mb-4">Feel free to reach out via email at <a href="aaronnathanrodriguez@gmail.com" class="underline hover:text-indigo-200">aaronnathanrodriguez@gmail.com</a>.</p>
+     
+      <p class="mb-4">Feel free to reach out via Linkedin <a href="www.linkedin.com/in/ARSTMU" class="underline hover:text-indigo-200">Linkedin</a>.</p>
+      <p class="text-sm opacity-75">&copy; 2025 Aaron Rodriguez — All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
