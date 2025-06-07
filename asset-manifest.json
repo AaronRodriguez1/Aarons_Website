@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Aarons_Website/static/css/main.fa25cf92.css",
+    "main.js": "/Aarons_Website/static/js/main.6a0d9b8b.js",
+    "index.html": "/Aarons_Website/index.html",
+    "main.fa25cf92.css.map": "/Aarons_Website/static/css/main.fa25cf92.css.map",
+    "main.6a0d9b8b.js.map": "/Aarons_Website/static/js/main.6a0d9b8b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa25cf92.css",
+    "static/js/main.6a0d9b8b.js"
+  ]
+}
