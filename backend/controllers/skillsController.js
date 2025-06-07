@@ -1,12 +1,19 @@
-const skills = [
-  { name: 'JavaScript', level: 90 },
-  { name: 'React', level: 85 },
-  { name: 'Node.js', level: 80 },
-  { name: 'Python', level: 88 },
-  { name: 'Docker', level: 75 },
-  { name: 'AWS', level: 70 }
-];
+const getSkills = (req, res) => {
+    const skills = [
+    { name: 'Python', level: 95 },
+    { name: 'C++', level: 90 },
+    { name: 'JavaScript', level: 90 },
+    { name: 'HTML', level: 90 },
+    { name: 'SQL/NoSQL', level: 90 },
+    { name: 'Git', level: 95 },
+    { name: 'Linux', level: 90 },
+    { name: 'Agile', level: 100 },
+    { name: 'Docker', level: 80 },
+    { name: 'AWS', level: 80 },
+  ];
 
-exports.getSkills = (req, res) => {
   res.json(skills);
 };
+
+module.exports = { getSkills };
+
