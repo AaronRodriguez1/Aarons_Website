@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendMail = async ({ name, email, message }) => {
-  console.log('📬 MOCK EMAIL SENT');
+  console.log('MOCK EMAIL SENT');
   console.log(`From: ${name} <${email}>`);
   console.log(`Message: ${message}`);
   return Promise.resolve(); // pretend it succeeded
