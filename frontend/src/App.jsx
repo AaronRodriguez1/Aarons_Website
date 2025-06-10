@@ -9,7 +9,7 @@ export default function App() {
   const [projects, setProjects] = useState([]);
   const [filter, setFilter] = useState('All');
 
-  // Fetch skills and projects from your backend
+
   useEffect(() => {
     fetch('http://localhost:4000/api/projects')
       .then(res => res.json())
