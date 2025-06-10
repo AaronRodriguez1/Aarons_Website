@@ -6,11 +6,11 @@ This is a full-stack personal website portfolio.
 
 ### Backend 
 The backend is responsible for:
-Serving structured JSON data to the frontend
-Managing project information and skill filtering
-Handling CORS and environment variables with Dotenv
+- Serving structured JSON data to the frontend
+- Managing project information and skill filtering
+- Handling CORS and environment variables with Dotenv
 
 ### Structure
-/frontend: React application
-/backend: Express server
-/initial_html_web_page: Static version of the initial page
+'/frontend': React application
+'/backend': Express server
+'/initial_html_web_page': Static version of the initial page
