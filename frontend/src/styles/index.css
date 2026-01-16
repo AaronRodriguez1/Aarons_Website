@@ -1,3 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --nn-bg: #05060b;
+  --nn-ink: #e6f0ff;
+  --nn-muted: rgba(230, 240, 255, 0.68);
+  --nn-accent: #67d5ff;
+  --nn-hot: #ff8a3d;
+  --nn-panel: rgba(12, 16, 28, 0.92);
+  --nn-line: #243247;
+  --nn-glow: rgba(103, 213, 255, 0.2);
+}
+
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, rgba(90, 132, 255, 0.15), transparent 60%),
+    radial-gradient(circle at 20% 30%, rgba(103, 213, 255, 0.08), transparent 40%),
+    var(--nn-bg);
+  color: var(--nn-ink);
+  min-height: 100vh;
+}
+
+.neural-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.neural-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  transform: translateY(80px);
+}
+
+.neural-overlay {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  padding: 0rem 1.5rem 6rem;
+}
+
+.neural-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+.neural-title {
+  font-family: 'Syne', 'Space Grotesk', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.neural-subtitle {
+  font-size: 1rem;
+  max-width: 32rem;
+  color: var(--nn-muted);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.neural-layer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.neural-layer-chip {
+  pointer-events: auto;
+  border: 1px solid rgba(103, 213, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--nn-muted);
+  background: rgba(12, 16, 28, 0.55);
+  transition: all 0.2s ease;
+}
+
+.neural-layer-chip.is-active,
+.neural-layer-chip:hover {
+  color: var(--nn-ink);
+  border-color: var(--nn-accent);
+  box-shadow: 0 0 18px rgba(103, 213, 255, 0.4);
+}
+
+.neural-footer {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  color: var(--nn-muted);
+  font-size: 0.75rem;
+}
+
+.neural-hint {
+  background: rgba(12, 16, 28, 0.65);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(103, 213, 255, 0.2);
+}
+
+.neural-card {
+  position: fixed;
+  left: 50%;
+  bottom: 2.5rem;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: min(640px, 90vw);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: var(--nn-panel);
+  border: 1px solid rgba(103, 213, 255, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+}
+
+.neural-card-media {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(103, 213, 255, 0.2);
+  background: rgba(12, 16, 28, 0.4);
+}
+
+.neural-card-media img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.neural-card.is-project .neural-card-media {
+  aspect-ratio: 8 / 3;
+}
+
+.neural-card.is-about .neural-card-media {
+  width: 220px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.neural-card.is-about .neural-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.neural-card-kicker {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--nn-muted);
+}
+
+.neural-card-title {
+  font-family: 'Syne', 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  margin-top: 0.4rem;
+}
+
+.neural-card-text {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--nn-muted);
+}
+
+.neural-card-list {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--nn-muted);
+  list-style: disc;
+  padding-left: 1.1rem;
+}
+
+.neural-card-actions {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.neural-card-link {
+  color: var(--nn-accent);
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+
+.neural-label {
+  pointer-events: none;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--nn-ink);
+  background: rgba(12, 16, 28, 0.7);
+  border: 1px solid rgba(103, 213, 255, 0.4);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 720px) {
+  .neural-header {
+    gap: 1rem;
+  }
+
+  .neural-footer {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .neural-card {
+    bottom: 1rem;
+  }
+
+  .neural-card-media {
+    max-height: 200px;
+  }
+}
