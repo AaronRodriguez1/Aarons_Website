@@ -3,12 +3,13 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
-function CameraRig({ target, distance }) {
+function CameraRig({ target, distance, mode, introActive, introDirection }) {
   const { camera } = useThree();
   const controlsRef = useRef(null);
   const targetVec = useMemo(() => new THREE.Vector3(), []);
   const goalPos = useMemo(() => new THREE.Vector3(), []);
   const isoOffset = useMemo(() => new THREE.Vector3(6.5, 5.2, 6.5), []);
+  const sideOffset = useMemo(() => new THREE.Vector3(1, 0, 0), []);
 
   useEffect(() => {
     if (target) {
@@ -19,7 +20,8 @@ function CameraRig({ target, distance }) {
   useFrame(() => {
     if (!controlsRef.current) return;
     const zoomFactor = distance / 12;
-    goalPos.copy(targetVec).addScaledVector(isoOffset, zoomFactor);
+    const offset = mode === 'side' ? sideOffset : isoOffset;
+    goalPos.copy(targetVec).addScaledVector(offset, zoomFactor);
     camera.position.lerp(goalPos, 0.08);
     controlsRef.current.target.lerp(targetVec, 0.12);
     controlsRef.current.update();
@@ -29,11 +31,13 @@ function CameraRig({ target, distance }) {
     <OrbitControls
       ref={controlsRef}
       enablePan={false}
-      enableRotate={false}
+      enableRotate={introActive}
+      autoRotate={introActive}
+      autoRotateSpeed={introDirection * 0.25}
       enableDamping
       dampingFactor={0.08}
       minDistance={6}
-      maxDistance={20}
+      maxDistance={100}
       rotateSpeed={0.6}
     />
   );
@@ -81,7 +85,10 @@ function NeuralNode({ node, activeLayerId, selectedNodeId, onSelect }) {
           metalness={0.2}
         />
       </mesh>
-      {(isActive || hovered || isSelected) && (
+      {(hovered ||
+        isSelected ||
+        isActive ||
+        (activeLayerId === 'hidden-projects' && node.layerId === 'hidden-skills')) && (
         <Html center distanceFactor={10} className="neural-label">
           <div>{node.label}</div>
         </Html>
@@ -94,6 +101,12 @@ function NetworkEdges({ edges, activeLayerId }) {
   return (
     <group>
       {edges.map(edge => {
+        if (
+          activeLayerId === 'hidden-projects' &&
+          (edge.fromLayer === 'output' || edge.toLayer === 'output')
+        ) {
+          return null;
+        }
         const isActive = edge.fromLayer === activeLayerId || edge.toLayer === activeLayerId;
         const color = isActive ? '#9ff2ff' : '#243247';
         const opacity = isActive ? 0.9 : 0.4;
@@ -124,15 +137,31 @@ export function NeuralNetwork({
   layerCenters,
   layerFocus,
   focusTarget,
+  focusDistance,
   onNodeSelect,
   onClearSelection,
 }) {
-  const focusDistance = layerFocus[activeLayerId] || 12;
+  const resolvedDistance = focusDistance ?? (layerFocus[activeLayerId] || 12);
+  const viewMode =
+    activeLayerId === 'hidden-skills' || activeLayerId === 'hidden-projects'
+      ? 'side'
+      : 'iso';
+  const [introActive, setIntroActive] = useState(true);
+  const [introDirection, setIntroDirection] = useState(1);
+
+  useEffect(() => {
+    const forwardTimer = setTimeout(() => setIntroDirection(-1), 2000);
+    const stopTimer = setTimeout(() => setIntroActive(false), 4000);
+    return () => {
+      clearTimeout(forwardTimer);
+      clearTimeout(stopTimer);
+    };
+  }, []);
 
   return (
     <div className="neural-canvas">
       <Canvas
-        camera={{ position: [0, 0, focusDistance], fov: 55 }}
+        camera={{ position: [0, 0, resolvedDistance], fov: 55 }}
         onPointerMissed={() => onClearSelection()}
       >
         <color attach="background" args={['#05060b']} />
@@ -150,7 +179,13 @@ export function NeuralNetwork({
             onSelect={onNodeSelect}
           />
         ))}
-        <CameraRig target={focusTarget} distance={focusDistance} />
+        <CameraRig
+          target={focusTarget}
+          distance={resolvedDistance}
+          mode={viewMode}
+          introActive={introActive}
+          introDirection={introDirection}
+        />
       </Canvas>
     </div>
   );

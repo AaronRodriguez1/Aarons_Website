@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { NeuralNetwork } from './components/NeuralNetwork';
 
 const layerGap = 6;
@@ -54,7 +54,7 @@ function collectProjectText(project) {
 function ringPosition(index, total, radius) {
   const angle = (index / total) * Math.PI * 2;
   const y = Math.sin(angle) * radius;
-  const z = Math.cos(angle) * radius * 0.7;
+  const z = Math.cos(angle) * radius * 0.95;
   return [y, z];
 }
 
@@ -67,7 +67,13 @@ function buildNetwork(layers, skillLinks = {}) {
   layers.forEach((layer, layerIndex) => {
     const centerX = (layerIndex - (layers.length - 1) / 2) * layerGap;
     layerCenters[layer.id] = [centerX, 0, 0];
-    const radius = Math.max(1.4, Math.min(3.6, layer.nodes.length * 0.35));
+    const baseRadius = Math.max(1.4, Math.min(3.6, layer.nodes.length * 0.35));
+    const radius =
+      layer.id === 'hidden-projects'
+        ? baseRadius * 0.6
+        : layer.id === 'hidden-skills'
+          ? baseRadius * 0.62
+          : baseRadius;
     const focusDistance = Math.max(9, 9 + layer.nodes.length * 0.25);
     layerFocus[layer.id] = focusDistance;
 
@@ -103,6 +109,8 @@ function buildNetwork(layers, skillLinks = {}) {
       targets.forEach(target => {
         edges.push({
           id: `${node.id}-${target.id}`,
+          fromId: node.id,
+          toId: target.id,
           from: node.position,
           to: target.position,
           fromLayer: node.layerId,
@@ -356,8 +364,10 @@ export default function App() {
     [layers, skillLinks]
   );
 
-  const [activeLayer, setActiveLayer] = useState(layers[0].id);
+  const [activeLayer, setActiveLayer] = useState('input');
   const [selectedNodeId, setSelectedNodeId] = useState(null);
+  const [isOverview, setIsOverview] = useState(true);
+  const hasAutoReturnedRef = useRef(false);
 
   const selectedNode = useMemo(
     () => nodes.find(node => node.id === selectedNodeId) || null,
@@ -366,13 +376,43 @@ export default function App() {
 
   const focusTarget = useMemo(() => {
     if (selectedNode) return selectedNode.position;
+    if (isOverview) return [0, 0, 0];
+    if (activeLayer === 'input') {
+      const about = nodes.find(node => node.id === aboutNode.id);
+      return about?.position || layerCenters[activeLayer] || [0, 0, 0];
+    }
     return layerCenters[activeLayer] || [0, 0, 0];
-  }, [activeLayer, layerCenters, selectedNode]);
+  }, [activeLayer, isOverview, layerCenters, nodes, selectedNode]);
+
+  const focusDistance = useMemo(() => {
+    if (!isOverview) {
+      if (activeLayer === 'hidden-skills' || activeLayer === 'hidden-projects') {
+        return Math.max(layerFocus[activeLayer] || 12, 30);
+      }
+      return layerFocus[activeLayer] || 12;
+    }
+    const distances = Object.values(layerFocus);
+    const maxDistance = distances.length ? Math.max(...distances) : 12;
+    return maxDistance + 4;
+  }, [activeLayer, isOverview, layerFocus]);
 
   const handleNodeSelect = node => {
     setSelectedNodeId(node.id);
     setActiveLayer(node.layerId);
+    setIsOverview(false);
   };
+
+  useEffect(() => {
+    if (hasAutoReturnedRef.current || !isOverview) return;
+    const timer = setTimeout(() => {
+      if (!selectedNodeId && !hasAutoReturnedRef.current) {
+        setActiveLayer('input');
+        setIsOverview(false);
+        hasAutoReturnedRef.current = true;
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [isOverview, selectedNodeId]);
 
   return (
     <div className="neural-shell">
@@ -384,8 +424,13 @@ export default function App() {
         layerCenters={layerCenters}
         layerFocus={layerFocus}
         focusTarget={focusTarget}
+        focusDistance={focusDistance}
+        isOverview={isOverview}
         onNodeSelect={handleNodeSelect}
-        onClearSelection={() => setSelectedNodeId(null)}
+        onClearSelection={() => {
+          setSelectedNodeId(null);
+          setIsOverview(activeLayer !== 'hidden-projects' && activeLayer !== 'hidden-skills');
+        }}
       />
 
       <div className="neural-overlay">
@@ -404,8 +449,15 @@ export default function App() {
                   activeLayer === layer.id ? 'is-active' : ''
                 }`}
                 onClick={() => {
-                  setSelectedNodeId(null);
+                  if (layer.id === 'input') {
+                    setSelectedNodeId(aboutNode.id);
+                  } else if (layer.id === 'output') {
+                    setSelectedNodeId(contactNode.id);
+                  } else {
+                    setSelectedNodeId(null);
+                  }
                   setActiveLayer(layer.id);
+                  setIsOverview(false);
                 }}
               >
                 {layer.label}
