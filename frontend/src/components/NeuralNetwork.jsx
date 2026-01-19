@@ -108,8 +108,8 @@ function NetworkEdges({ edges, activeLayerId }) {
           return null;
         }
         const isActive = edge.fromLayer === activeLayerId || edge.toLayer === activeLayerId;
-        const color = isActive ? '#9ff2ff' : '#243247';
-        const opacity = isActive ? 0.9 : 0.4;
+        const color = isActive ? '#b8f2ff' : '#3a4b63';
+        const opacity = isActive ? 1 : 0.65;
 
         return (
           <line key={edge.id}>

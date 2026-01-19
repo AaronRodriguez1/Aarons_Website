@@ -8,10 +8,10 @@ const aboutNode = {
   label: 'About',
   type: 'info',
   description:
-    'Hi, I am Aaron Rodriguez - a software engineer from San Antonio, TX, and a Masters student in Artificial Intelligence at UT Austin. I love building intelligent systems that solve real world problems.',
+    'Hi, I am Aaron Rodriguez - an engineer from San Antonio, TX, and a Masters student in Artificial Intelligence at UT Austin. I love building intelligent systems that solve real world problems.',
   image: 'images/aaron.jpg',
   list: [
-    'When I am not deep diving into model architectures, you will probably find me working out, running, cycling, or hiking.',
+    'When I am not learning something new, you will probably find me working out, running, cycling, or hiking.',
     'Fun fact: I can juggle.',
     "Fun fact: I can solve a Rubik's cube in under 1 minute.",
   ],
@@ -26,19 +26,57 @@ const contactNode = {
   secondaryLink: 'https://www.linkedin.com/in/ARSTMU',
 };
 
+const archivedProjects = [
+  {
+    id: 'project-13-archived',
+    title: 'Trash Collection Device',
+    category: ['Design', 'Controls'],
+    link: 'https://drive.google.com/file/d/1MJ7_lzSh6CtxqITUzT3lU9trQge1i0Hb/view?usp=sharing',
+    img: 'images/trash.jpg',
+    summary: [
+      'Led design and prototyping of an automated river trash collector.',
+      'Integrated data-logging to optimize water sample performance.',
+      'Programmed PLCs to automate trash and sample collection cycles.',
+    ],
+  },
+  {
+    id: 'project-12-archived',
+    title: 'Spring Research Fellowship',
+    category: ['Research', 'Design'],
+    link: 'https://drive.google.com/file/d/1w3UVfO_1EDTZAkR72K0rlBgeT_bQ0z2f/view?usp=sharing',
+    img: 'images/spring_research.jpg',
+    summary: [
+      'Studied contaminant transport in HVAC using pressure transducers.',
+      'Designed a scale-model HVAC unit in SolidWorks.',
+    ],
+  },
+  {
+    id: 'project-14-archived',
+    title: 'Drone Leg Connection',
+    category: 'Design',
+    link: 'https://drive.google.com/file/d/1vAAb5tcuS1KjMux3Up093MAa053dNZYW/view?usp=sharing',
+    img: 'images/drone.jpg',
+    summary: [
+      'Designed leg connection using strength, fatigue, and crack-growth analyses.',
+      'Ran FEA in SolidWorks for Von Mises stress and strain plots.',
+      'Built 3D-printed models to validate deflection and fatigue behavior.',
+    ],
+  },
+];
+
 const skillMeta = [
   { name: 'Python', level: 95, keywords: ['python'] },
-  { name: 'PyTorch', level: 90, keywords: ['pytorch', 'transformer'] },
-  { name: 'Computer Vision', level: 88, keywords: ['computer vision', 'mri', 'vision', 'cv'] },
-  { name: 'NLP', level: 88, keywords: ['nlp', 'tokenization', 'language'] },
-  { name: 'MLOps/Cloud', level: 85, keywords: ['mlops', 'cloud', 'sagemaker', 'cloudwatch', 'aws'] },
-  { name: 'Docker', level: 82, keywords: ['docker', 'container'] },
-  { name: 'Linux', level: 90, keywords: ['linux'] },
   { name: 'C++', level: 88, keywords: ['c++', 'cpp', 'c plus plus'] },
-  { name: 'Azure', level: 80, keywords: ['azure'] },
-  { name: 'PLC/Controls', level: 82, keywords: ['plc', 'scada', 'controls', 'tia portal', 'opc'] },
-  { name: 'SolidWorks', level: 78, keywords: ['solidworks', 'fea', 'von mises'] },
-  { name: 'Flutter/Dart', level: 75, keywords: ['flutter', 'dart', 'android studio', 'glide'] },
+  { name: 'Deep Learning', level: 92, keywords: ['deep learning', 'cnn', 'rnn', 'transformer'] },
+  { name: 'Machine Learning', level: 90, keywords: ['ml', 'machine learning', 'regression', 'classification'] },
+  { name: 'NLP', level: 88, keywords: ['nlp', 'tokenization', 'language', 'nli'] },
+  { name: 'Agentic/MCP', level: 80, keywords: ['agent', 'agentic', 'mcp', 'langchain', 'crew'] },
+  { name: 'PyTorch', level: 90, keywords: ['pytorch'] },
+  { name: 'Scikit-learn', level: 86, keywords: ['scikit', 'sklearn'] },
+  { name: 'SQL', level: 85, keywords: ['sql', 'mysql', 'nosql', 'mongodb'] },
+  { name: 'FastAPI', level: 82, keywords: ['fastapi', 'api', 'backend'] },
+  { name: 'Git CI/CD', level: 88, keywords: ['git', 'ci/cd', 'pipeline', 'devops'] },
+  { name: 'Docker', level: 84, keywords: ['docker', 'container'] },
 ];
 
 function toSkillId(name) {
@@ -128,6 +166,18 @@ export default function App() {
 
   const [projects] = useState([
     {
+      id: 'project-5',
+      title: 'Agent Librarian Chat Bot',
+      category: ['AI/ML', 'Generative AI'],
+      link: 'https://github.com/AaronRodriguez1/agent_librarian',
+      img: 'images/agent_librarian.jpg',
+      summary: [
+        'Built a retrieval augmented chatbot that processes video and audio inputs, extracts transcripts, and matches them to relevant papers using Langchain, FAISS, and OpenAI models.',
+        'Created a structured dataset in a JSON knowledge base containing research papers, ensuring high accuracy retrieval.',
+        'Implemented accuracy evaluation metrics to continuously improve retrieval performance, fine tuning embeddings.',
+      ],
+    },
+    {
       id: 'project-1',
       title: 'Digital Twin AI Assistant',
       category: ['AI/ML', 'Deep Learning', 'NLP', 'Generative AI'],
@@ -141,15 +191,52 @@ export default function App() {
       ],
     },
     {
-      id: 'project-2',
-      title: 'Brain Tumor Classification using MRI Images',
-      category: ['AI/ML', 'Deep Learning', 'Computer Vision'],
-      link: 'https://drive.google.com/file/d/1-50U7q1kxwXR8REjSF6HT0mCXAh2uqwM/view?usp=sharing',
-      img: 'images/tumor.jpg',
+      id: 'project-12',
+      title: 'Explainable AI for Dermatology',
+      category: ['AI/ML', 'Computer Vision', 'Healthcare'],
+      link: 'https://github.com/AaronRodriguez1/AI_HL_Projects/blob/main/Aaron_Rodriguez_High_Risk_Project.pdf',
+      img: 'images/xai_derm.png',
       summary: [
-        'Applied Transfer Learning (ResNet50) on a Kaggle MRI brain tumor dataset to classify glioma, meningioma, pituitary tumors, and no tumor.',
-        'Achieved 96% test accuracy after fine-tuning and used data augmentation to reduce overfitting.',
-        'Evaluated performance using a confusion matrix, classification report, and error analysis to identify common misclassifications.',
+        'Built a hybrid CNN + vision-language system for skin cancer classification using MobileNetV2 and Grad-CAM.',
+        'Integrated InstructBLIP to generate clinical captions and evaluated validity across 200+ cases.',
+        'Authored a research paper on interpretability, model failure modes, and safe deployment paths.',
+      ],
+    },
+    {
+      id: 'project-4',
+      title: 'SuperTuxKart Autonomous Racing',
+      category: ['AI/ML', 'Deep Learning'],
+      link: 'https://github.com/AaronRodriguez1/SuperTuxKart',
+      img: 'images/Supertuxkart.jpg',
+      summary: [
+        'Developed PyTorch pipelines to predict vehicle waypoints using track boundaries and raw RGB images from the SuperTuxKart driving simulator.',
+        'Implemented three planners (MLP, Transformer, and CNN) with custom loss functions, data loaders, and learning rate schedulers.',
+        'Achieved < 0.20 m longitudinal and < 0.60 m lateral error; validated predictions by simulating autonomous driving in PySuperTuxKart.',
+      ],
+    },
+    {
+      id: 'project-13',
+      title: 'Aerial Object Detection with YOLO',
+      category: ['AI/ML', 'Computer Vision'],
+      link: 'https://github.com/AaronRodriguez1/dji-cv',
+      img: 'images/tracker.gif',
+      summary: [
+        'Built an end-to-end aerial object detection pipeline using YOLOv8 and OpenCV to generate annotated UAV video outputs, with optional DeepSORT tracking.',
+        'Fine-tuned YOLOv8n and YOLOv8m on the xView dataset by converting GeoJSON annotations to YOLO format and managing custom train/validation splits.',
+        'Compared model capacity using loss curves, precision/recall, and mAP@50/mAP@50-95 to analyze transfer learning behavior across architectures.',
+        'Identified domain shift between satellite and UAV imagery, noting stronger performance on higher-altitude scenes and rigid classes like vehicles.',
+        'Proposed data-centric improvements including UAV-specific fine-tuning and resolution-aware training strategies.',
+      ],
+    },
+    {
+      id: 'project-14',
+      title: 'Adversarial Robustness in Natural Language Inference',
+      category: ['AI/ML', 'NLP'],
+      img: 'images/nli.png',
+      summary: [
+        'Diagnosed shortcut reasoning in an ELECTRA-small NLI model using the HANS challenge set, with subcase breakdown and rule-based slicing.',
+        'Fine-tuned on 30k adversarial HANS-train examples, improving non-entailment accuracy across lexical-overlap, subsequence, and constituent heuristics.',
+        'Reach out for access to the paper.',
       ],
     },
     {
@@ -167,27 +254,15 @@ export default function App() {
       ],
     },
     {
-      id: 'project-4',
-      title: 'SuperTuxKart Autonomous Racing',
-      category: ['AI/ML', 'Deep Learning'],
-      link: 'https://github.com/AaronRodriguez1/SuperTuxKart',
-      img: 'images/Supertuxkart.jpg',
+      id: 'project-2',
+      title: 'Brain Tumor Classification using MRI Images',
+      category: ['AI/ML', 'Deep Learning', 'Computer Vision'],
+      link: 'https://drive.google.com/file/d/1-50U7q1kxwXR8REjSF6HT0mCXAh2uqwM/view?usp=sharing',
+      img: 'images/tumor.png',
       summary: [
-        'Developed PyTorch pipelines to predict vehicle waypoints using track boundaries and raw RGB images from the SuperTuxKart driving simulator.',
-        'Implemented three planners (MLP, Transformer, and CNN) with custom loss functions, data loaders, and learning rate schedulers.',
-        'Achieved < 0.20 m longitudinal and < 0.60 m lateral error; validated predictions by simulating autonomous driving in PySuperTuxKart.',
-      ],
-    },
-    {
-      id: 'project-5',
-      title: 'Agent Librarian Chat Bot',
-      category: ['AI/ML', 'Generative AI'],
-      link: 'https://github.com/AaronRodriguez1/agent_librarian',
-      img: 'images/agent_librarian.jpg',
-      summary: [
-        'Built a retrieval augmented chatbot that processes video and audio inputs, extracts transcripts, and matches them to relevant papers using Langchain, FAISS, and OpenAI models.',
-        'Created a structured dataset in a JSON knowledge base containing research papers, ensuring high accuracy retrieval.',
-        'Implemented accuracy evaluation metrics to continuously improve retrieval performance, fine tuning embeddings.',
+        'Applied Transfer Learning (ResNet50) on a Kaggle MRI brain tumor dataset to classify glioma, meningioma, pituitary tumors, and no tumor.',
+        'Achieved 96% test accuracy after fine-tuning and used data augmentation to reduce overfitting.',
+        'Evaluated performance using a confusion matrix, classification report, and error analysis to identify common misclassifications.',
       ],
     },
     {
@@ -262,41 +337,6 @@ export default function App() {
         'Designed UI/UX using Flutter, focusing on accessibility and user engagement.',
         'Enabled students to explore 17 interactive video demos.',
         'Created a glide app to showcase the project.',
-      ],
-    },
-    {
-      id: 'project-12',
-      title: 'Spring Research Fellowship',
-      category: ['Research', 'Design'],
-      link: 'https://drive.google.com/file/d/1w3UVfO_1EDTZAkR72K0rlBgeT_bQ0z2f/view?usp=sharing',
-      img: 'images/spring_research.jpg',
-      summary: [
-        'Studied contaminant transport in HVAC using pressure transducers.',
-        'Designed a scale-model HVAC unit in SolidWorks.',
-      ],
-    },
-    {
-      id: 'project-13',
-      title: 'Trash Collection Device',
-      category: ['Design', 'Controls'],
-      link: 'https://drive.google.com/file/d/1MJ7_lzSh6CtxqITUzT3lU9trQge1i0Hb/view?usp=sharing',
-      img: 'images/trash.jpg',
-      summary: [
-        'Led design and prototyping of an automated river trash collector.',
-        'Integrated data-logging to optimize water sample performance.',
-        'Programmed PLCs to automate trash and sample collection cycles.',
-      ],
-    },
-    {
-      id: 'project-14',
-      title: 'Drone Leg Connection',
-      category: 'Design',
-      link: 'https://drive.google.com/file/d/1vAAb5tcuS1KjMux3Up093MAa053dNZYW/view?usp=sharing',
-      img: 'images/drone.jpg',
-      summary: [
-        'Designed leg connection using strength, fatigue, and crack-growth analyses.',
-        'Ran FEA in SolidWorks for Von Mises stress and strain plots.',
-        'Built 3D-printed models to validate deflection and fatigue behavior.',
       ],
     },
   ]);
@@ -407,6 +447,7 @@ export default function App() {
     const timer = setTimeout(() => {
       if (!selectedNodeId && !hasAutoReturnedRef.current) {
         setActiveLayer('input');
+        setSelectedNodeId(aboutNode.id);
         setIsOverview(false);
         hasAutoReturnedRef.current = true;
       }
@@ -472,6 +513,47 @@ export default function App() {
           </div>
         </section>
       </div>
+
+      {activeLayer === 'hidden-projects' && !selectedNode && (
+        <section className="neural-projects-panel">
+          <div className="neural-projects-header">
+            <div>
+              <h2>Projects</h2>
+              <p>Click any project node or card to open details.</p>
+            </div>
+            <button
+              className="neural-projects-close"
+              onClick={() => {
+                setSelectedNodeId(null);
+                setActiveLayer('input');
+                setIsOverview(true);
+              }}
+            >
+              Close
+            </button>
+          </div>
+          <div className="neural-projects-grid">
+            {projects.map(project => (
+              <button
+                key={project.id}
+                className="neural-project-card"
+                onClick={() => setSelectedNodeId(project.id)}
+              >
+                <img src={project.img} alt={project.title} />
+                <div>
+                  <h3>{project.title}</h3>
+                  <span>
+                    {Array.isArray(project.category)
+                      ? project.category.join(' • ')
+                      : project.category}
+                  </span>
+                  <p>{Array.isArray(project.summary) ? project.summary[0] : project.summary}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       {selectedNode && (
         <div
