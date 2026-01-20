@@ -116,7 +116,8 @@ function buildNetwork(layers, skillLinks = {}) {
     layerFocus[layer.id] = focusDistance;
 
     layer.nodes.forEach((node, idx) => {
-      const [y, z] = ringPosition(idx, layer.nodes.length, radius);
+      const [y, z] =
+        layer.nodes.length === 1 ? [0, 0] : ringPosition(idx, layer.nodes.length, radius);
       nodes.push({
         ...node,
         layerId: layer.id,
@@ -166,28 +167,28 @@ export default function App() {
 
   const [projects] = useState([
     {
-      id: 'project-5',
-      title: 'Agent Librarian Chat Bot',
-      category: ['AI/ML', 'Generative AI'],
-      link: 'https://github.com/AaronRodriguez1/agent_librarian',
-      img: 'images/agent_librarian.jpg',
+      id: 'project-13',
+      title: 'Aerial Object Detection with YOLO',
+      category: ['AI/ML', 'Computer Vision'],
+      link: 'https://github.com/AaronRodriguez1/dji-cv',
+      img: 'images/tracker.gif',
       summary: [
-        'Built a retrieval augmented chatbot that processes video and audio inputs, extracts transcripts, and matches them to relevant papers using Langchain, FAISS, and OpenAI models.',
-        'Created a structured dataset in a JSON knowledge base containing research papers, ensuring high accuracy retrieval.',
-        'Implemented accuracy evaluation metrics to continuously improve retrieval performance, fine tuning embeddings.',
+        'Built an end-to-end aerial object detection pipeline using YOLOv8 and OpenCV to generate annotated UAV video outputs, with optional DeepSORT tracking.',
+        'Fine-tuned YOLOv8n and YOLOv8m on the xView dataset by converting GeoJSON annotations to YOLO format and managing custom train/validation splits.',
+        'Compared model capacity using loss curves, precision/recall, and mAP@50/mAP@50-95 to analyze transfer learning behavior across architectures.',
+        'Identified domain shift between satellite and UAV imagery, noting stronger performance on higher-altitude scenes and rigid classes like vehicles.',
+        'Proposed data-centric improvements including UAV-specific fine-tuning and resolution-aware training strategies.',
       ],
     },
     {
-      id: 'project-1',
-      title: 'Digital Twin AI Assistant',
-      category: ['AI/ML', 'Deep Learning', 'NLP', 'Generative AI'],
-      link: 'https://github.com/AaronRodriguez1/Digital_Twin_Project',
-      img: 'images/digital_twin.jpg',
+      id: 'project-14',
+      title: 'Adversarial Robustness in Natural Language Inference',
+      category: ['AI/ML', 'NLP'],
+      img: 'images/nli.png',
       summary: [
-        'Designed a custom digital twin agent leveraging PyTorch for building and training a transformer model.',
-        'Deployed the system on a Pi Zero with OnnxRuntime, enabling predictive maintenance and real-time monitoring.',
-        'Developed efficient training pipelines with batching, tokenization, and loss optimization, ensuring scalable NLP solutions.',
-        'Integrated AWS Sagemaker and Cloudwatch to enable continuous fine-tuning, automated deployment, and edge device syncing.',
+        'Diagnosed shortcut reasoning in an ELECTRA-small NLI model using the HANS challenge set, with subcase breakdown and rule-based slicing.',
+        'Fine-tuned on 30k adversarial HANS-train examples, improving non-entailment accuracy across lexical-overlap, subsequence, and constituent heuristics.',
+        'Reach out for access to the paper.',
       ],
     },
     {
@@ -215,28 +216,28 @@ export default function App() {
       ],
     },
     {
-      id: 'project-13',
-      title: 'Aerial Object Detection with YOLO',
-      category: ['AI/ML', 'Computer Vision'],
-      link: 'https://github.com/AaronRodriguez1/dji-cv',
-      img: 'images/tracker.gif',
+      id: 'project-5',
+      title: 'Agent Librarian Chat Bot',
+      category: ['AI/ML', 'Generative AI'],
+      link: 'https://github.com/AaronRodriguez1/agent_librarian',
+      img: 'images/agent_librarian.jpg',
       summary: [
-        'Built an end-to-end aerial object detection pipeline using YOLOv8 and OpenCV to generate annotated UAV video outputs, with optional DeepSORT tracking.',
-        'Fine-tuned YOLOv8n and YOLOv8m on the xView dataset by converting GeoJSON annotations to YOLO format and managing custom train/validation splits.',
-        'Compared model capacity using loss curves, precision/recall, and mAP@50/mAP@50-95 to analyze transfer learning behavior across architectures.',
-        'Identified domain shift between satellite and UAV imagery, noting stronger performance on higher-altitude scenes and rigid classes like vehicles.',
-        'Proposed data-centric improvements including UAV-specific fine-tuning and resolution-aware training strategies.',
+        'Built a retrieval augmented chatbot that processes video and audio inputs, extracts transcripts, and matches them to relevant papers using Langchain, FAISS, and OpenAI models.',
+        'Created a structured dataset in a JSON knowledge base containing research papers, ensuring high accuracy retrieval.',
+        'Implemented accuracy evaluation metrics to continuously improve retrieval performance, fine tuning embeddings.',
       ],
     },
     {
-      id: 'project-14',
-      title: 'Adversarial Robustness in Natural Language Inference',
-      category: ['AI/ML', 'NLP'],
-      img: 'images/nli.png',
+      id: 'project-1',
+      title: 'Digital Twin AI Assistant',
+      category: ['AI/ML', 'Deep Learning', 'NLP', 'Generative AI'],
+      link: 'https://github.com/AaronRodriguez1/Digital_Twin_Project',
+      img: 'images/digital_twin.jpg',
       summary: [
-        'Diagnosed shortcut reasoning in an ELECTRA-small NLI model using the HANS challenge set, with subcase breakdown and rule-based slicing.',
-        'Fine-tuned on 30k adversarial HANS-train examples, improving non-entailment accuracy across lexical-overlap, subsequence, and constituent heuristics.',
-        'Reach out for access to the paper.',
+        'Designed a custom digital twin agent leveraging PyTorch for building and training a transformer model.',
+        'Deployed the system on a Pi Zero with OnnxRuntime, enabling predictive maintenance and real-time monitoring.',
+        'Developed efficient training pipelines with batching, tokenization, and loss optimization, ensuring scalable NLP solutions.',
+        'Integrated AWS Sagemaker and Cloudwatch to enable continuous fine-tuning, automated deployment, and edge device syncing.',
       ],
     },
     {
@@ -408,6 +409,7 @@ export default function App() {
   const [selectedNodeId, setSelectedNodeId] = useState(null);
   const [isOverview, setIsOverview] = useState(true);
   const hasAutoReturnedRef = useRef(false);
+  const [showProjectsPanel, setShowProjectsPanel] = useState(false);
 
   const selectedNode = useMemo(
     () => nodes.find(node => node.id === selectedNodeId) || null,
@@ -454,6 +456,16 @@ export default function App() {
     }, 3000);
     return () => clearTimeout(timer);
   }, [isOverview, selectedNodeId]);
+
+  useEffect(() => {
+    if (activeLayer === 'hidden-projects' && !selectedNodeId) {
+      setShowProjectsPanel(false);
+      const timer = setTimeout(() => setShowProjectsPanel(true), 800);
+      return () => clearTimeout(timer);
+    }
+    setShowProjectsPanel(false);
+    return undefined;
+  }, [activeLayer, selectedNodeId]);
 
   return (
     <div className="neural-shell">
@@ -514,8 +526,8 @@ export default function App() {
         </section>
       </div>
 
-      {activeLayer === 'hidden-projects' && !selectedNode && (
-        <section className="neural-projects-panel">
+      {activeLayer === 'hidden-projects' && !selectedNode && showProjectsPanel && (
+        <section className="neural-projects-panel is-visible">
           <div className="neural-projects-header">
             <div>
               <h2>Projects</h2>
@@ -563,6 +575,13 @@ export default function App() {
           role="dialog"
           aria-live="polite"
         >
+          <button
+            className="neural-card-close"
+            onClick={() => setSelectedNodeId(null)}
+            aria-label="Back"
+          >
+            Back
+          </button>
           {selectedNode.image && (
             <div className="neural-card-media">
               <img src={selectedNode.image} alt={selectedNode.label} />
@@ -587,7 +606,7 @@ export default function App() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Open project
+                  Email
                 </a>
               )}
               {selectedNode.secondaryLink && (
